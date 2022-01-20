@@ -1,21 +1,40 @@
-function ItemListContainer({ principal, secundario } ) {
-    return (
-        <div className="container col-xxl-8 px-4 py-5">
-        <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div className="col-10 col-sm-8 col-lg-6">
-                <img src={require('./asado-a-la-estaca-grillshop.jpg')} className="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy" />
-            </div>
-            <div className="col-lg-6">
-                <h1 className="display-5 fw-bold lh-1 mb-3">{principal}</h1>
-                <p className="lead">{secundario}</p>
-                <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button type="button" className="btn btn-primary btn-lg px-4 me-md-2">Suscribirme</button>
-                    <button type="button" className="btn btn-outline-secondary btn-lg px-4">Quiero Saber Más!</button>
-                </div>
-            </div>
+import React, {useState, useEffect} from 'react'
+import Card from '../Card/Card'
+import Thumbnail from '../Thumbnail/Thumbnail'
+import { getFetch } from '../../helpers/mocks'
+function ItemListContainer() {
+  const [productos, setProductos] = useState ([])
+  const [loading, setloading] = useState(true)
+  
+  
+  useEffect(() => {
+      getFetch
+      .then(res => setProductos(res))
+      .catch(err => console.log(err))
+      .finally(()=> setloading(false))     
+  }, [])
+
+  return (
+    <div>
+      <div className="album py-5 bg-light">
+        <div className="container">
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          { loading ? <h2>Cargando ...</h2> :
+                                    productos.map( prod => 
+                                    <div key={prod.id} className="col">
+                                    <Card {...prod}>
+                                      <Thumbnail imagen = {prod.foto} placeholder = {prod.nombre}/>
+                                    </Card>
+                                  </div>                                
+            
+            ) } 
+
+            
+          </div>
         </div>
+      </div>
     </div>
-    )
+  )
 }
 
 export default ItemListContainer
