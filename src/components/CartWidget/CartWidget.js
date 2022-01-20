@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 function CartWidget() {
     return (
-            <FontAwesomeIcon className="ShoppingCar"  icon={faShoppingCart} />
+        <FontAwesomeIcon className="ShoppingCar" icon={faShoppingCart} />
     )
 }
 
