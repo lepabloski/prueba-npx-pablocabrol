@@ -1,8 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getFetch } from '../../helpers/mocks';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import ItemCount from '../ItemCount/ItemCount'
+
+const TerminarCompra = ({onAdd})=> {
+  return <button className="btn btn-outline-success" ><Link className="nav-link" to='/carrito'>Terminar compra</Link></button>
+}
 
 function ItemDetail({producto}) {
+  const [buttonType, setButtonType] = useState('count')
+    
+  // Funcion que contola la cantidad y cambia el tipo de componente a mostrar
+    function onAdd(cant) {
+      if (cant > 0) {
+        setButtonType('toCart')
+        console.log('lo se cambia el boton')
+      }
+    }
 
   return <div className="container">
     <div className="card">
@@ -20,13 +33,19 @@ function ItemDetail({producto}) {
             <h4 className="price">Precio: <span>{producto.price}</span></h4>
             <p className="vote"><strong>{producto.stock}</strong> productos en existencia.</p>
             <div className="action">
-              <button className="add-to-cart btn btn-primary" type="button">Agregar al carrito</button>
+              {
+                buttonType === 'count' ?
+                <ItemCount stock={producto.stock} inicial={1} onAdd={onAdd} /> 
+                :
+                <TerminarCompra/>
+              }
+
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>;
+  </div>
 }
 
 export default ItemDetail;
