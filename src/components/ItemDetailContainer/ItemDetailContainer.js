@@ -5,6 +5,7 @@ import ItemDetail from '../ItemDetail/ItemDetail';
 
 function ItemDetailContainer() {
   const [producto, setProducto] = useState({})
+  const [loading, setloading] = useState(true)
   const { IdProducto } = useParams()
   useEffect(() => {
     if (IdProducto) {
@@ -13,12 +14,14 @@ function ItemDetailContainer() {
           return produ.id === IdProducto
         })))
         .catch(err => console.log(err))
-        .finally()
+        .finally(() => setloading(false))
     }
 
   }, [])
 
-  return <ItemDetail producto={producto}/>;
+  return <>
+    {loading ? <h2>loading</h2> : <ItemDetail producto={producto} />}
+  </>
 }
 
 export default ItemDetailContainer

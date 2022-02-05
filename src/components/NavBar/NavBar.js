@@ -22,10 +22,10 @@ export default function NavBar() {
                     </li>
                 </ul>
             </div>
-            <div className="collapse navbar-collapse">
-                <ul className="navbar-nav me-auto mb-2 mb-sm-0">
-                    <li className="nav-item"><Link className="nav-link" to='/carrito'>Al carrito <CartWidget /></Link></li>
-                </ul>
+            <div>
+                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li className="nav-item"><Link className="nav-link" to='/carrito'>Al carrito <CartWidget /></Link></li>
+                    </ul>
             </div>
         </nav>
     )

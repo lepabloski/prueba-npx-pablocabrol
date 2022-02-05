@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../../context/cartContext';
 import ItemCount from '../ItemCount/ItemCount'
 
-const TerminarCompra = ({onAdd})=> {
-  return <button className="btn btn-outline-success" ><Link className="nav-link" to='/carrito'>Terminar compra</Link></button>
+const TerminarCompra = () => {
+  return <>
+    <button className="btn btn-outline-primary" ><Link className="nav-link" to='/carrito'>Terminar compra</Link></button>
+    <button className="btn btn-outline-primary"><Link className="nav-link" to='/'>Cotinuar comprando</Link></button>
+  </>
 }
 
-function ItemDetail({producto}) {
+function ItemDetail({ producto }) {
   const [buttonType, setButtonType] = useState('count')
-    
+  const { cartList, agregarAlCarro } = useCartContext()
+
+  console.log(cartList)
   // Funcion que contola la cantidad y cambia el tipo de componente a mostrar
-    function onAdd(cant) {
-      if (cant > 0) {
-        setButtonType('toCart')
-        console.log('lo se cambia el boton')
-      }
+  function onAdd(cant) {
+    if (cant > 0) {
+      setButtonType('finish')
+      agregarAlCarro({ item: producto, quantity: cant })
     }
+  }
 
   return <div className="container">
     <div className="card">
@@ -35,9 +41,9 @@ function ItemDetail({producto}) {
             <div className="action">
               {
                 buttonType === 'count' ?
-                <ItemCount stock={producto.stock} inicial={1} onAdd={onAdd} /> 
-                :
-                <TerminarCompra/>
+                  <ItemCount stock={producto.stock} inicial={1} onAdd={onAdd} />
+                  :
+                  <TerminarCompra />
               }
 
             </div>

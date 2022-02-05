@@ -30,7 +30,7 @@ export const getItems = new Promise( (res,rej)=> {
         setTimeout(()=>{
             //Acciones que quiero que se resuelvan
             res(productos)        
-        }, 2000)
+        }, 3000)
     }else{
         rej('404 not found')
     }
