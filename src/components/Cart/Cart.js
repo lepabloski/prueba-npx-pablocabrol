@@ -1,7 +1,7 @@
 import { useCartContext } from "../../context/cartContext";
 
 function Cart() {
-  const { cartList, vaciarCarrito } = useCartContext()
+  const { cartList, vaciarCarrito, precioTotal } = useCartContext()
   return <div className="container">
     {cartList.map(prod =>
       <div className="card mb-3" key={prod.item.id}>
@@ -20,6 +20,7 @@ function Cart() {
       </div>
     )}
     <br />
+    <h2>Precio total <span className="badge bg-secondary">{precioTotal()}</span></h2>
     <button className="btn btn-primary" onClick={vaciarCarrito}>Vaciar carrito</button>
   </div>;
 }

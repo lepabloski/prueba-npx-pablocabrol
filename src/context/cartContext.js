@@ -9,14 +9,14 @@ export function useCartContext() { return useContext(cartContext) }
 function CartContextProvider({ children }) {
 
     const [cartList, setCartList] = useState([]);
-
+    const [total, setTotal] = useState(0);
     //
     function agregarAlCarro(prod) {
         if (unique(prod)) {
             // hacemos una copia del estado cartList
             const copyCartList = [...cartList]
             copyCartList.forEach((i) => {
-                if(i.item.id === prod.item.id) {
+                if (i.item.id === prod.item.id) {
                     i.quantity = i.quantity + prod.quantity
                 }
             })
@@ -24,7 +24,7 @@ function CartContextProvider({ children }) {
             return setCartList(copyCartList)
         }
         // si no hay duplicados agrego el producto nuevo
-        return setCartList([...cartList, prod]) 
+        return setCartList([...cartList, prod])
     }
 
     // declaramos una funcion que detecta la existencia de un elemento en un array.
@@ -39,10 +39,26 @@ function CartContextProvider({ children }) {
         setCartList([])
     }
 
+    const precioTotal = () => {
+        const totalCartList = [...cartList]
+        let totalPrice = 0
+        totalCartList.forEach(x => {
+            totalPrice = totalPrice + (x.item.price * x.quantity)
+        })
+        return totalPrice
+    }
+
+    // function totalFinal() {
+    //     setTotal(precioTotal())
+    // }
+    console.log(precioTotal())
+
+    console.log(total)
     return <cartContext.Provider value={{
         cartList,
         agregarAlCarro,
-        vaciarCarrito
+        vaciarCarrito,
+        precioTotal
     }} >
         {children}
     </cartContext.Provider>;
