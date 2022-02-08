@@ -5,8 +5,10 @@ import ItemCount from '../ItemCount/ItemCount'
 
 const TerminarCompra = () => {
   return <>
-    <button className="btn btn-outline-primary" ><Link className="nav-link" to='/carrito'>Terminar compra</Link></button>
-    <button className="btn btn-outline-primary"><Link className="nav-link" to='/'>Cotinuar comprando</Link></button>
+    <div class="d-grid gap-2">
+      <Link className="btn btn-primary" to='/carrito'>Terminar compra</Link>
+      <Link className="btn btn-primary" to='/'>Continuar comprando</Link>
+    </div>
   </>
 }
 
@@ -36,7 +38,7 @@ function ItemDetail({ producto }) {
           <div className="details col-md-6">
             <h3 className="product-title">{producto.name}</h3>
             <p className="product-description">Descripcion del producto</p>
-            <h4 className="price">Precio: <span>{producto.price}</span></h4>
+            <h3 className="price">Precio: <span>{producto.price} Pesos</span></h3>
             <p className="vote"><strong>{producto.stock}</strong> productos en existencia.</p>
             <div className="action">
               {

@@ -10,6 +10,7 @@ function CartContextProvider({ children }) {
 
     const [cartList, setCartList] = useState([]);
     const [total, setTotal] = useState(0);
+    const [vacio, setVacio] = useState(true)
     //
     function agregarAlCarro(prod) {
         if (unique(prod)) {
@@ -22,8 +23,10 @@ function CartContextProvider({ children }) {
             })
             // reeemplazo la cartlIst por su copia actualizada
             return setCartList(copyCartList)
+            
         }
         // si no hay duplicados agrego el producto nuevo
+        setVacio(false)
         return setCartList([...cartList, prod])
     }
 
@@ -37,6 +40,7 @@ function CartContextProvider({ children }) {
     // funcion de vaciar carrito
     function vaciarCarrito() {
         setCartList([])
+        setVacio(true)
     }
 
     // funcion de calcular el precio total de los producto
@@ -48,7 +52,7 @@ function CartContextProvider({ children }) {
         })
         return totalPrice
     }
-    
+
     // funcion para contar los items de un carrito
     const cantidadItemsCarrito = () => {
         const cantCartList = [...cartList]
@@ -59,12 +63,23 @@ function CartContextProvider({ children }) {
         return totalcant
     }
 
+    // funcion para eliminar un producto de la lista
+    const quitarDelcarrito = (v) => {
+        const nuevoCartList = cartList.filter(e => e.item.id !== v)
+        if (nuevoCartList.length === 0) {
+            setVacio(true)
+        }
+        return setCartList(nuevoCartList)
+    }
+
     return <cartContext.Provider value={{
         cartList,
         agregarAlCarro,
         vaciarCarrito,
         precioTotal,
-        cantidadItemsCarrito
+        cantidadItemsCarrito,
+        quitarDelcarrito,
+        vacio
     }} >
         {children}
     </cartContext.Provider>;

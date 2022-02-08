@@ -1,5 +1,6 @@
 img {
-    max-width: 100%; }
+    max-width: 100%; 
+    padding: 1em;}
   
   .preview {
     display: -webkit-box;
@@ -43,7 +44,8 @@ img {
       -webkit-animation-name: opacity;
               animation-name: opacity;
       -webkit-animation-duration: .3s;
-              animation-duration: .3s; }
+              animation-duration: .3s;
+       }
   
   .card {
     margin-top: 50px;

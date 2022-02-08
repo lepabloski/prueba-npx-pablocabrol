@@ -7,7 +7,7 @@ function CartWidget() {
     const { cantidadItemsCarrito } = useCartContext()
     return (
         <>
-            <span class="badge rounded-pill">
+            <span className="badge rounded-pill">
                 {cantidadItemsCarrito()}
             </span>
             <FontAwesomeIcon className="ShoppingCar" icon={faShoppingCart} />
