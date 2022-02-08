@@ -34,11 +34,12 @@ function CartContextProvider({ children }) {
         })
         return findProduct
     }
-
+    // funcion de vaciar carrito
     function vaciarCarrito() {
         setCartList([])
     }
 
+    // funcion de calcular el precio total de los producto
     const precioTotal = () => {
         const totalCartList = [...cartList]
         let totalPrice = 0
@@ -47,18 +48,23 @@ function CartContextProvider({ children }) {
         })
         return totalPrice
     }
+    
+    // funcion para contar los items de un carrito
+    const cantidadItemsCarrito = () => {
+        const cantCartList = [...cartList]
+        let totalcant = 0
+        cantCartList.forEach(x => {
+            totalcant = totalcant + x.quantity
+        })
+        return totalcant
+    }
 
-    // function totalFinal() {
-    //     setTotal(precioTotal())
-    // }
-    console.log(precioTotal())
-
-    console.log(total)
     return <cartContext.Provider value={{
         cartList,
         agregarAlCarro,
         vaciarCarrito,
-        precioTotal
+        precioTotal,
+        cantidadItemsCarrito
     }} >
         {children}
     </cartContext.Provider>;
