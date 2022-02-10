@@ -41,7 +41,6 @@ function ItemList() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

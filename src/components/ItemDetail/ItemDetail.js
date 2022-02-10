@@ -36,7 +36,7 @@ function ItemDetail({ producto }) {
           </div>
           <div className="details col-md-6">
             <h3 className="product-title">{producto.name}</h3>
-            <p className="product-description">Descripcion del producto</p>
+            <p className="product-description">{producto.descripcion}</p>
             <h3 className="price">Precio: <span>{producto.price} Pesos</span></h3>
             <p className="vote"><strong>{producto.stock}</strong> productos en existencia.</p>
             <div className="action">
