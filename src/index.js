@@ -5,6 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './helpers/bootstrap-custom/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
+import getFirestoreApp from './firebase/config';
+
+getFirestoreApp();
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

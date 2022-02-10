@@ -5,7 +5,7 @@ import ItemCount from '../ItemCount/ItemCount'
 
 const TerminarCompra = () => {
   return <>
-    <div class="d-grid gap-2">
+    <div className="d-grid gap-2">
       <Link className="btn btn-primary" to='/carrito'>Terminar compra</Link>
       <Link className="btn btn-primary" to='/'>Continuar comprando</Link>
     </div>
@@ -16,7 +16,6 @@ function ItemDetail({ producto }) {
   const [buttonType, setButtonType] = useState('count')
   const { cartList, agregarAlCarro } = useCartContext()
 
-  console.log(cartList)
   // Funcion que contola la cantidad y cambia el tipo de componente a mostrar
   function onAdd(cant) {
     if (cant > 0) {

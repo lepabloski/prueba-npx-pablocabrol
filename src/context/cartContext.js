@@ -9,7 +9,7 @@ export function useCartContext() { return useContext(cartContext) }
 function CartContextProvider({ children }) {
 
     const [cartList, setCartList] = useState([]);
-    const [total, setTotal] = useState(0);
+    // const [total, setTotal] = useState(0);
     const [vacio, setVacio] = useState(true)
     //
     function agregarAlCarro(prod) {
