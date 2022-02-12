@@ -12,15 +12,15 @@ const FinishingBuy = () => {
   </>
 }
 
-function ItemDetail({ producto }) {
+function ItemDetail({ product }) {
   const [buttonType, setButtonType] = useState('count')
-  const { agregarAlCarro } = useCartContext()
+  const { addToCart } = useCartContext()
 
   // Funcion que contola la cantidad y cambia el tipo de componente a mostrar
   function onAdd(cant) {
     if (cant > 0) {
       setButtonType('finish')
-      agregarAlCarro({ item: producto, quantity: cant })
+      addToCart({ item: product, quantity: cant })
     }
   }
 
@@ -31,18 +31,18 @@ function ItemDetail({ producto }) {
           <div className="preview col-md-6">
 
             <div className="preview-pic tab-content">
-              <div className="tab-pane active" id="pic-1"><img src={producto.foto} /></div>
+              <div className="tab-pane active" id="pic-1"><img src={product.foto} /></div>
             </div>
           </div>
           <div className="details col-md-6">
-            <h3 className="product-title">{producto.name}</h3>
-            <p className="product-description">{producto.descripcion}</p>
-            <h3 className="price">Precio: <span>{producto.price} Pesos</span></h3>
-            <p className="vote"><strong>{producto.stock}</strong> productos en existencia.</p>
+            <h3 className="product-title">{product.name}</h3>
+            <p className="product-description">{product.descripcion}</p>
+            <h3 className="price">Precio: <span>{product.price} Pesos</span></h3>
+            <p className="vote"><strong>{product.stock}</strong> productos en existencia.</p>
             <div className="action">
               {
                 buttonType === 'count' ?
-                  <ItemCount stock={producto.stock} inicial={1} onAdd={onAdd} />
+                  <ItemCount stock={product.stock} inicial={1} onAdd={onAdd} />
                   :
                   <FinishingBuy />
               }

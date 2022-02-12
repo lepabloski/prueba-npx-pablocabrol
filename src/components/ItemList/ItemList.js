@@ -9,8 +9,6 @@ function ItemList() {
   const [loading, setloading] = useState(true)
   const { idCategory } = useParams()
 
-  console.log(idCategory)
-
   useEffect(() => {
     const db = getFirestore()
     const queryCollection = collection(db, 'Items')
