@@ -2,27 +2,25 @@ import React, { useState, useEffect } from 'react'
 import { getDocs, getFirestore, collection, query, where } from 'firebase/firestore'
 import Item from '../Item/Item'
 import Hero from '../Hero/Hero'
-import Footer from '../Footer/Footer'
 import { useParams } from 'react-router-dom'
+
 function ItemList() {
-  const [productos, setProductos] = useState([])
+  const [product, setProduct] = useState([])
   const [loading, setloading] = useState(true)
-  const { idCategoria } = useParams()
+  const { idCategory } = useParams()
 
   useEffect(() => {
     const db = getFirestore()
     const queryCollection = collection(db, 'Items')
+    const querysCategory = query(queryCollection, where('categoria', '==', idCategory))
 
-    let querys = ''
-    if (idCategoria) {
-      querys = query(queryCollection, where('categoria', '==', idCategoria))
-    } else {
-      querys= queryCollection
-    }
+    let querys = idCategory ? querysCategory : queryCollection
+
     getDocs(querys)
-      .then(resp => setProductos(resp.docs.map(prod => ({ id: prod.id, ...prod.data() }))))
+      .then(resp => setProduct(resp.docs.map(prod => ({ id: prod.id, ...prod.data() }))))
       .catch(err => console.log(err))
       .finally(() => setloading(false))
+
   }, [idCategoria])
 
 
@@ -33,7 +31,7 @@ function ItemList() {
         <div className="container">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {loading ? <h2>Cargando ...</h2> :
-              productos.map(prod =>
+              product.map(prod =>
                 <div key={prod.id} className="col">
                   <Item {...prod} />
                 </div>

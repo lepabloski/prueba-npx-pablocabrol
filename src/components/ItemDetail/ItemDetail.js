@@ -14,7 +14,7 @@ const TerminarCompra = () => {
 
 function ItemDetail({ producto }) {
   const [buttonType, setButtonType] = useState('count')
-  const { cartList, agregarAlCarro } = useCartContext()
+  const { agregarAlCarro } = useCartContext()
 
   // Funcion que contola la cantidad y cambia el tipo de componente a mostrar
   function onAdd(cant) {
