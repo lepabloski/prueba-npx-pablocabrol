@@ -9,8 +9,9 @@ export function useCartContext() { return useContext(cartContext) }
 function CartContextProvider({ children }) {
 
     const [cartList, setCartList] = useState([]);
-    // const [total, setTotal] = useState(0);
     const [empty, setEmpty] = useState(true)
+
+    console.log(empty)
     //
     function addToCart(prod) {
         if (unique(prod)) {
@@ -55,9 +56,9 @@ function CartContextProvider({ children }) {
 
     // funcion para contar los items de un carrito
     const howMany = () => {
-        const cantCartList = [...cartList]
+        const quantCartList = [...cartList]
         let totalcant = 0
-        cantCartList.forEach(x => {
+        quantCartList.forEach(x => {
             totalcant = totalcant + x.quantity
         })
         return totalcant
@@ -65,11 +66,11 @@ function CartContextProvider({ children }) {
 
     // funcion para eliminar un producto de la lista
     const removeFromCart = (v) => {
-        const nuevoCartList = cartList.filter(e => e.item.id !== v)
-        if (nuevoCartList.length === 0) {
+        const newCartList = cartList.filter(e => e.item.id !== v)
+        if (newCartList.length === 0) {
             setEmpty(true)
         }
-        return setCartList(nuevoCartList)
+        return setCartList(newCartList)
     }
 
     return <cartContext.Provider value={{

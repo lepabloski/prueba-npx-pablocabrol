@@ -21,7 +21,6 @@ function Cart() {
                 <button type="button" className="btn btn-primary" aria-label="Close" onClick={() => removeFromCart(prod.item.id)} >Quitar X</button>
               </div>
             </div>
-           
           </div>
         </div>
       ) :
@@ -39,7 +38,7 @@ function Cart() {
       <br />
       <h2>Precio total {totalPrice()} Pesos</h2>
       <Link className="btn btn-primary" to='/'>Continuar Comprando</Link>
-      <button className="btn btn-primary" onClick={emptyCart()}>Vaciar carrito</button>
+      <button className="btn btn-primary" onClick={emptyCart}>Vaciar carrito</button>
     </> : ''}
   </div>;
 }

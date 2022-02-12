@@ -16,7 +16,7 @@ function Item(prod) {
             <small className="card-text"><b>$ {prod.price}</b></small>
           </div>
         </div>
-        <Link to={`/detalle/${prod.id}`}>
+        <Link to={`/detail/${prod.id}`}>
           <button className="btn btn-primary">Detalle</button>
         </Link>
 

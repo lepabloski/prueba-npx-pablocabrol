@@ -15,16 +15,16 @@ export default function NavBar() {
             <div className="collapse navbar-collapse" id="navbarsExample03">
                 <ul className="navbar-nav me-auto mb-2 mb-sm-0">
                     <li className="nav-item">
-                        <Link to='/categoria/gorras' className="nav-link">Gorras</Link>
+                        <Link to='/category/gorras' className="nav-link">Gorras</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to='/categoria/remeras' className="nav-link">Remeras</Link>
+                        <Link to='/category/remeras' className="nav-link">Remeras</Link>
                     </li>
                 </ul>
             </div>
             <div>
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li className="nav-item"><Link className="nav-link" to='/carrito'><CartWidget /></Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/cart'><CartWidget /></Link></li>
                     </ul>
             </div>
         </nav>
