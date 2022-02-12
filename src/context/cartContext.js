@@ -10,9 +10,9 @@ function CartContextProvider({ children }) {
 
     const [cartList, setCartList] = useState([]);
     // const [total, setTotal] = useState(0);
-    const [vacio, setVacio] = useState(true)
+    const [empty, setEmpty] = useState(true)
     //
-    function agregarAlCarro(prod) {
+    function addToCart(prod) {
         if (unique(prod)) {
             // hacemos una copia del estado cartList
             const copyCartList = [...cartList]
@@ -26,7 +26,7 @@ function CartContextProvider({ children }) {
             
         }
         // si no hay duplicados agrego el producto nuevo
-        setVacio(false)
+        setEmpty(false)
         return setCartList([...cartList, prod])
     }
 
@@ -38,13 +38,13 @@ function CartContextProvider({ children }) {
         return findProduct
     }
     // funcion de vaciar carrito
-    function vaciarCarrito() {
+    function emptyCart() {
         setCartList([])
-        setVacio(true)
+        setEmpty(true)
     }
 
     // funcion de calcular el precio total de los producto
-    const precioTotal = () => {
+    const totalPrice = () => {
         const totalCartList = [...cartList]
         let totalPrice = 0
         totalCartList.forEach(x => {
@@ -54,7 +54,7 @@ function CartContextProvider({ children }) {
     }
 
     // funcion para contar los items de un carrito
-    const cantidadItemsCarrito = () => {
+    const howMany = () => {
         const cantCartList = [...cartList]
         let totalcant = 0
         cantCartList.forEach(x => {
@@ -64,22 +64,22 @@ function CartContextProvider({ children }) {
     }
 
     // funcion para eliminar un producto de la lista
-    const quitarDelcarrito = (v) => {
+    const removeFromCart = (v) => {
         const nuevoCartList = cartList.filter(e => e.item.id !== v)
         if (nuevoCartList.length === 0) {
-            setVacio(true)
+            setEmpty(true)
         }
         return setCartList(nuevoCartList)
     }
 
     return <cartContext.Provider value={{
         cartList,
-        agregarAlCarro,
-        vaciarCarrito,
-        precioTotal,
-        cantidadItemsCarrito,
-        quitarDelcarrito,
-        vacio
+        addToCart,
+        emptyCart,
+        totalPrice,
+        howMany,
+        removeFromCart,
+        empty
     }} >
         {children}
     </cartContext.Provider>;

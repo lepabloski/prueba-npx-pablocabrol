@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../ItemDetail/ItemDetail';
-import { getDoc, getFirestore, doc, setLogLevel } from 'firebase/firestore'
+import { getDoc, getFirestore, doc} from 'firebase/firestore'
 
 function ItemDetailContainer() {
-  const [producto, setProducto] = useState({})
+  const [product, setProduct] = useState({})
   const [loading, setloading] = useState(true)
-  const { IdProducto } = useParams()
+  const { IdProduct } = useParams()
   useEffect(() => {
-    if (IdProducto) {
+    if (IdProduct) {
     const db = getFirestore()
 
-    const queryProducto = doc(db, 'Items', IdProducto)
+    const queryProduct = doc(db, 'Items', IdProduct)
 
-    getDoc(queryProducto)
+    getDoc(queryProduct)
     .then(res => {
-      setProducto({id: res.id, ...res.data()})
+      setProduct({id: res.id, ...res.data()})
     })
     .catch(err => console.log(err))
     .finally(() => setloading(false))
@@ -25,7 +25,7 @@ function ItemDetailContainer() {
 }, [])
 
   return <>
-    {loading ? <h2>loading</h2> : <ItemDetail producto={producto} />}
+    {loading ? <h2>loading</h2> : <ItemDetail product={product} />}
   </>
 }
 

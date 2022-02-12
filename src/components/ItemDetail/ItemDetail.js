@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
 import ItemCount from '../ItemCount/ItemCount'
 
-const TerminarCompra = () => {
+const FinishingBuy = () => {
   return <>
     <div className="d-grid gap-2">
-      <Link className="btn btn-primary" to='/carrito'>Terminar compra</Link>
+      <Link className="btn btn-primary" to='/cart'>Terminar compra</Link>
       <Link className="btn btn-primary" to='/'>Continuar comprando</Link>
     </div>
   </>
@@ -44,7 +44,7 @@ function ItemDetail({ producto }) {
                 buttonType === 'count' ?
                   <ItemCount stock={producto.stock} inicial={1} onAdd={onAdd} />
                   :
-                  <TerminarCompra />
+                  <FinishingBuy />
               }
 
             </div>

@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useCartContext } from '../../context/cartContext'
 
 function CartWidget() {
-    const { cantidadItemsCarrito } = useCartContext()
+    const { howMany } = useCartContext()
     return (
         <>
             <span className="badge rounded-pill">
-                {cantidadItemsCarrito()}
+                {howMany()}
             </span>
             <FontAwesomeIcon className="ShoppingCar" icon={faShoppingCart} />
 

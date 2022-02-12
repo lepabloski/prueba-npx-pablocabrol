@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cartContext";
 
 function Cart() {
-  const { cartList, vaciarCarrito, precioTotal, quitarDelcarrito, vacio } = useCartContext()
+  const {  cartList, totalPrice, removeFromCart, empty, emptyCart } = useCartContext()
+
   return <div className="container">
-    {!vacio ?
+    {!empty ?
       cartList.map((prod, index) =>
         <div className="card mb-3" key={index}>
           <div className="row g-0">
@@ -17,7 +18,7 @@ function Cart() {
                 <p className="card-text">Precio: <b>{prod.item.price}</b> </p>
                 <p className="card-text">Detalle: {prod.item.descripcion}</p>
                 <p className="card-text"><small className="text-muted">Cantidad: {prod.quantity}</small></p>
-                <button type="button" className="btn btn-primary" aria-label="Close" onClick={() => quitarDelcarrito(prod.item.id)} >Quitar X</button>
+                <button type="button" className="btn btn-primary" aria-label="Close" onClick={() => removeFromCart(prod.item.id)} >Quitar X</button>
               </div>
             </div>
            
@@ -34,11 +35,11 @@ function Cart() {
         </div>
       </div>
     }
-    {!vacio ? <>
+    {!empty ? <>
       <br />
-      <h2>Precio total {precioTotal()} Pesos</h2>
+      <h2>Precio total {totalPrice()} Pesos</h2>
       <Link className="btn btn-primary" to='/'>Continuar Comprando</Link>
-      <button className="btn btn-primary" onClick={vaciarCarrito}>Vaciar carrito</button>
+      <button className="btn btn-primary" onClick={emptyCart()}>Vaciar carrito</button>
     </> : ''}
   </div>;
 }

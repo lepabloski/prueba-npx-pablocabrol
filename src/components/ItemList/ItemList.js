@@ -9,19 +9,20 @@ function ItemList() {
   const [loading, setloading] = useState(true)
   const { idCategory } = useParams()
 
+  console.log(idCategory)
+
   useEffect(() => {
     const db = getFirestore()
     const queryCollection = collection(db, 'Items')
-    const querysCategory = query(queryCollection, where('categoria', '==', idCategory))
 
-    let querys = idCategory ? querysCategory : queryCollection
+    let querys = idCategory ? query(queryCollection,where('categoria', '==', idCategory)) : queryCollection
 
     getDocs(querys)
       .then(resp => setProduct(resp.docs.map(prod => ({ id: prod.id, ...prod.data() }))))
       .catch(err => console.log(err))
       .finally(() => setloading(false))
 
-  }, [idCategoria])
+  }, [idCategory])
 
 
   return (
