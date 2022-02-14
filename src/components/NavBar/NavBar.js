@@ -14,18 +14,30 @@ export default function NavBar() {
             </button>
             <div className="collapse navbar-collapse" id="navbarsExample03">
                 <ul className="navbar-nav me-auto mb-2 mb-sm-0">
-                    <li className="nav-item">
-                        <Link to='/category/gorras' className="nav-link">Gorras</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to='/category/remeras' className="nav-link">Remeras</Link>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li className="nav-item">
+                                <Link to='/' className="dropdown-item">
+                                    Todos los productos
+                                </Link>
+                            </li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li className="nav-item">
+                                <Link to='/category/gorras' className="dropdown-item">Gorras</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to='/category/remeras' className="dropdown-item">Remeras</Link>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
             <div>
-                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li className="nav-item"><Link className="nav-link" to='/cart'><CartWidget /></Link></li>
-                    </ul>
+                <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li className="nav-item"><Link className="nav-link" to='/cart'><CartWidget /></Link></li>
+                </ul>
             </div>
         </nav>
     )

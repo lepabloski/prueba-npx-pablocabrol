@@ -13,7 +13,7 @@ function ItemList() {
     const db = getFirestore()
     const queryCollection = collection(db, 'Items')
 
-    let querys = idCategory ? query(queryCollection,where('categoria', '==', idCategory)) : queryCollection
+    let querys = idCategory ? query(queryCollection, where('categoria', '==', idCategory)) : queryCollection
 
     getDocs(querys)
       .then(resp => setProduct(resp.docs.map(prod => ({ id: prod.id, ...prod.data() }))))
@@ -26,9 +26,9 @@ function ItemList() {
   return (
     <div>
       <Hero />
-      <div className="album py-5 bg-light">
-        <div className="container">
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {loading ? <h2>Cargando ...</h2> :
               product.map(prod =>
                 <div key={prod.id} className="col">
@@ -37,7 +37,7 @@ function ItemList() {
               )}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

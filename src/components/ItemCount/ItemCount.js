@@ -25,7 +25,7 @@ function ItemCount({ stock, inicial, onAdd }) {
     }
   };
 
-  const agregar=()=>{
+  const agregar = () => {
     onAdd(count)
   }
 
