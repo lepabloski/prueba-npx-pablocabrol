@@ -4,16 +4,16 @@ import Thumbnail from '../Thumbnail/Thumbnail';
 
 function Item(prod) {
   return (
-    <div className="card shadow-sm">
+    <div className="card shadow-sm" key={prod.id}>
       <Thumbnail image={prod.foto} />
-      <div class="card-body p-4">
-        <div class="text-center">
-          <h5 class="fw-bolder">{prod.name}</h5>
+      <div className="card-body p-4">
+        <div className="text-center">
+          <h5 className="fw-bolder">{prod.name}</h5>
           <b>$ {prod.price}</b>
           <p className="card-text">Categoría: <b>{prod.categoria} </b><br/> Stock: <b>{prod.stock}</b></p>
         </div>
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-          <div class="text-center"><Link to={`/detail/${prod.id}`}>
+        <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+          <div className="text-center"><Link to={`/detail/${prod.id}`}>
             <button className="btn btn-primary">Detalle</button>
           </Link></div>
         </div>

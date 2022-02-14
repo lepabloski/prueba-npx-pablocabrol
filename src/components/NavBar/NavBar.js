@@ -15,15 +15,15 @@ export default function NavBar() {
             <div className="collapse navbar-collapse" id="navbarsExample03">
                 <ul className="navbar-nav me-auto mb-2 mb-sm-0">
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li className="nav-item">
                                 <Link to='/' className="dropdown-item">
                                     Todos los productos
                                 </Link>
                             </li>
-                            <li><hr class="dropdown-divider" /></li>
+                            <li><hr className="dropdown-divider" /></li>
                             <li className="nav-item">
                                 <Link to='/category/gorras' className="dropdown-item">Gorras</Link>
                             </li>

@@ -10,8 +10,6 @@ function CartContextProvider({ children }) {
 
     const [cartList, setCartList] = useState([]);
     const [empty, setEmpty] = useState(true)
-
-    console.log(empty)
     //
     function addToCart(prod) {
         if (unique(prod)) {
