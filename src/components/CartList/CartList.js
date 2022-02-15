@@ -1,12 +1,13 @@
 import { addDoc, collection, getFirestore } from "firebase/firestore";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cartContext";
 import Cart from "../Cart/Cart";
 import Messages from "../Messages/Messages";
+import { generatePath, useNavigate } from 'react-router';
 
 function CartList() {
     const { cartList, totalPrice, empty, emptyCart } = useCartContext()
+    const navigate = useNavigate();
     // Creo una funcion de compra
     const buy = async () => {
         let order = {}
@@ -45,7 +46,9 @@ function CartList() {
     }
 
     const showOrderId = (id) => {
-        alert('Orden Creada con numero: ' + id)
+        // alert('Orden Creada con numero: ' + id)
+        navigate(generatePath('/order/:idOrder', { idOrder: id}));
+
     }
 
     return (
