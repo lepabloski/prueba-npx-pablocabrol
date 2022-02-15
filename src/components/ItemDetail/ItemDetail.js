@@ -52,29 +52,6 @@ function ItemDetail({ product }) {
         </div>
       </div>
     </div>
-    {/* <section className="py-5">
-            <div className="container px-4 px-lg-5 my-5">
-                <div className="row gx-4 gx-lg-5 align-items-center">
-                    <div className="col-md-6"><img src={product.foto} /></div>
-                    <div className="col-md-6">
-                        <div className="small mb-1">SKU: BST-498</div>
-                        <h1 className="display-5 fw-bolder">{product.name}</h1>
-                        <div className="fs-5 mb-5">
-                            <span className="text-decoration-line-through">Precio: {product.price} Pesos</span>
-                            <p className="vote"><strong>{product.stock}</strong> productos en existencia.</p>
-                        </div>
-                        <p className="lead">{product.descripcion}</p>
-                        <div className="d-flex">
-                            <input className="form-control text-center me-3" id="inputQuantity" type="num" value="1" />
-                            <button className="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i className="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> */}
   </div>
 }
 

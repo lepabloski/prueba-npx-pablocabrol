@@ -1,17 +1,18 @@
 import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cartContext";
 import Cart from "../Cart/Cart";
-import Mensajes from "../Mensajes/Mensajes";
+import Messages from "../Messages/Messages";
 
 function CartList() {
     const { cartList, totalPrice, empty, emptyCart } = useCartContext()
-
+    // Creo una funcion de compra
     const buy = async () => {
         let order = {}
 
         order.bueyer = {
-            name: 'Pablo Cabrol', 
+            name: 'Pablo Cabrol',
             email: 'pabloecabrol@gmail.com',
             phone: '3435132776'
         }
@@ -34,7 +35,17 @@ function CartList() {
         const db = getFirestore()
         const orderCollection = collection(db, 'Orders')
         await addDoc(orderCollection, order)
-        .then(resp => console.log(resp))
+            .then(resp => showOrderId(resp.id))
+            .catch(err => console.log(err))
+            .finally(() => {
+                // muestra un alert con el id de la orden creada y luesog borra el carrito
+                emptyCart()
+            }
+            )
+    }
+
+    const showOrderId = (id) => {
+        alert('Orden Creada con numero: ' + id)
     }
 
     return (
@@ -43,7 +54,7 @@ function CartList() {
                 cartList.map((prod) =>
                     <Cart {...prod} />
                 ) :
-                <Mensajes/>
+                <Messages />
             }
             {!empty ? <>
                 <br />
