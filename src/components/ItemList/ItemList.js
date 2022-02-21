@@ -3,6 +3,7 @@ import { getDocs, getFirestore, collection, query, where } from 'firebase/firest
 import Item from '../Item/Item'
 import { Link, useParams } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
+import { Breadcrumb, Card, Col, Row } from 'react-bootstrap'
 
 function ItemList() {
   const [product, setProduct] = useState([])
@@ -26,27 +27,30 @@ function ItemList() {
   return (<>
     <Container>
       <br />
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb container">
-          {idCategory != undefined ? <li className="breadcrumb-item active" aria-current="page">{idCategory}</li> : <li className="breadcrumb-item active" aria-current="page">Todos</li>}
-        </ol>
-      </nav>
-      <div className="row align-items-md-stretch">
-        <div className="col-md-6">
-          <div className="h-100 p-5 text-white bg-primary rounded-3">
-            <h2>Gorras</h2>
-            <p>Gooras galacticas para esa capochina!</p>
-            <Link to='/category/gorras' className="btn btn-light">Filtrar</Link>
-          </div>
-        </div>
-        <div className="col-md-6">
+      <Breadcrumb>
+        <Breadcrumb.Item >{idCategory != undefined ? <li className="breadcrumb-item active" aria-current="page">{idCategory}</li> : <li className="breadcrumb-item active" aria-current="page">Todos</li>}</Breadcrumb.Item>
+      </Breadcrumb>
+      <Row>
+        <Col sm={6}>
+          <Card className="bg-dark text-white">
+            <Card.Img src="./gorras_hatshop_front.jpg" alt="Card image" />
+            <Card.ImgOverlay>
+              <Card.Title>Gorras</Card.Title>
+              <Card.Text>
+              Gooras galacticas para esa capochina!
+              </Card.Text>
+              <Card.Text><Link to='/category/gorras' className="btn btn-light">Filtrar</Link></Card.Text>
+            </Card.ImgOverlay>
+          </Card>
+         </Col>
+        <Col sm={6}>
           <div className="h-100 p-5 bg-light border rounded-3">
             <h2>Remeras</h2>
             <p>Remeras top para semejante personaje!</p>
             <Link to='/category/remeras' className="btn btn-secondary">Filtrar</Link>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
       <br />
       {loading ?
         <div className='row'>
