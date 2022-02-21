@@ -1,17 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Thumbnail from '../Thumbnail/Thumbnail';
-import { useCartContext } from '../../context/cartContext';
 
 function Item(prod) {
-  const { addToCart } = useCartContext()
 
-  // Funcion que contola la cantidad y cambia el tipo de componente a mostrar
-  function onAdd(cant) {
-    if (cant > 0) {
-      addToCart({ item: prod, quantity: cant })
-    }
-  }
   return (
     <div className="col">
       <div className="card shadow-sm">

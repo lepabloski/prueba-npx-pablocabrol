@@ -1,6 +1,8 @@
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import ToastContainer from 'react-bootstrap/ToastContainer';
+import Toast from 'react-bootstrap/Toast';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
 import ItemCount from '../ItemCount/ItemCount'
@@ -22,17 +24,26 @@ const FinishingBuy = () => {
 
 function ItemDetail({ prod }) {
   const [buttonType, setButtonType] = useState('count')
+  const [show, setShow] = useState(false)
+  const [countNumber, setCountNumber] = useState(0)
   const { addToCart } = useCartContext()
 
   // Funcion que contola la cantidad y cambia el tipo de componente a mostrar
   function onAdd(cant) {
     if (cant > 0) {
+      setCountNumber(cant)
       setButtonType('finish')
+      setShow(true)
       addToCart({ item: prod, quantity: cant })
     }
   }
 
   return <div className="container">
+    <ToastContainer className="p-3" position='top-end' >
+      <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+        <Toast.Body>Agregaste {countNumber} {prod.name} al carrito! </Toast.Body>
+      </Toast>
+    </ToastContainer>
     <div className="col-xxl-8 px-4 py-5">
       <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div className="col-10 col-sm-8 col-lg-6">

@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <CartContextProvider>
-        <div className="App container">
+        <div className="App">
           <NavBar />
           <Routes>
             <Route exact path='/' element={<ItemListContainer />} />

@@ -93,28 +93,29 @@ function CartList() {
 
     return (
         <div className="container">
+            <br />
             {!empty ? <>
-                <div class="row g-5">
-                    <div class="col-md-5 col-lg-4 order-md-last">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="text-primary">Tu Carrito</span>
-                            <span class="badge bg-primary rounded-pill text-light ">{howMany()}</span>
+                <div className="row g-5">
+                    <div className="col-md-5 col-lg-4 order-md-last">
+                        <h4 className="d-flex justify-content-between align-items-center mb-3">
+                            <span className="text-primary">Tu Carrito</span>
+                            <span className="badge bg-primary rounded-pill text-light ">{howMany()}</span>
                         </h4>
-                        <ul class="list-group mb-3">
+                        <ul className="list-group mb-3">
                             {cartList.map((prod, i) =>
                                 <Cart {...prod} key={i} />
                             )}
-                            <li class="list-group-item d-flex justify-content-between">
+                            <li className="list-group-item d-flex justify-content-between">
                                 <span>Total</span>
                                 <strong>{totalPrice()} $</strong>
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-7 col-lg-8">
-                        <h4 class="mb-3">Datos Personales</h4>
+                    <div className="col-md-7 col-lg-8">
+                        <h4 className="mb-3">Datos Personales</h4>
                         <form className="card p-2" onSubmit={buy}>
-                            <div class="row g-3">
-                                <div class="col-12">
+                            <div className="row g-3">
+                                <div className="col-12">
                                     <label for="name" className="form-label">Nombre</label>
                                     <input
                                         className="form-control"
@@ -125,7 +126,7 @@ function CartList() {
                                         value={formData.name}
                                     />
                                 </div>
-                                <div class="col-12">
+                                <div className="col-12">
                                     <label for="phone" className="form-label">Teléfono</label>
                                     <input
                                         className="form-control"
@@ -136,7 +137,7 @@ function CartList() {
                                         value={formData.phone}
                                     />
                                 </div>
-                                <div class="col-sm-6">
+                                <div className="col-sm-6">
                                     <label for="email" className="form-label">Email</label>
                                     <input
                                         className="form-control"
@@ -147,7 +148,7 @@ function CartList() {
                                         value={formData.email}
                                     />
                                 </div>
-                                <div class="col-sm-6">
+                                <div className="col-sm-6">
                                     <label for="validarEmail" className="form-label">Reingrese email</label>
                                     <input
                                         className="form-control"
