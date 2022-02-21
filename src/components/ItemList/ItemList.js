@@ -33,40 +33,50 @@ function ItemList() {
       <Row>
         <Col sm={6}>
           <Card className="bg-dark text-white">
-            <Card.Img src="./gorras_hatshop_front.jpg" alt="Card image" />
+            <Card.Img src={require("./gorras_hatshop_front.jpg")} alt="Card image" />
             <Card.ImgOverlay>
               <Card.Title>Gorras</Card.Title>
               <Card.Text>
-              Gooras galacticas para esa capochina!
+                Gooras galacticas para esa capochina!
               </Card.Text>
               <Card.Text><Link to='/category/gorras' className="btn btn-light">Filtrar</Link></Card.Text>
             </Card.ImgOverlay>
           </Card>
-         </Col>
+        </Col>
         <Col sm={6}>
-          <div className="h-100 p-5 bg-light border rounded-3">
-            <h2>Remeras</h2>
-            <p>Remeras top para semejante personaje!</p>
-            <Link to='/category/remeras' className="btn btn-secondary">Filtrar</Link>
-          </div>
+          <Card className="bg-dark text-white">
+            <Card.Img src={require("./remeras-hatshop-front.jpg")} alt="Card image" />
+            <Card.ImgOverlay>
+              <Card.Title>Remeras</Card.Title>
+              <Card.Text>
+                Remeras top para semejante personaje!
+              </Card.Text>
+              <Card.Text><Link to='/category/remeras' className="btn btn-light">Filtrar</Link></Card.Text>
+            </Card.ImgOverlay>
+          </Card>
         </Col>
       </Row>
       <br />
       {loading ?
-        <div className='row'>
-          <div className="d-flex justify-content-center text-primary">
+        <Row>
+          <Col sm={3}></Col>
+          <Col sm={6}>
             <div className="spinner-border" role="status">
               <span className="visually-hidden"></span>
             </div>
-          </div>
-        </div>
+          </Col>
+          <Col sm={3}></Col>
+        </Row>
         :
         <>
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {/* <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> */}
+          <Row className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {product.map((prod, i) =>
               <Item {...prod} key={i} />
             )}
-          </div>
+          </Row>
+
+          {/* </div> */}
         </>
 
       }
