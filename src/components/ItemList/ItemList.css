@@ -1,0 +1,22 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+.bg-light {
+  border: none !important;
+}
+
+.py-5 {
+  padding: 0 auto;
+}
+
+.card {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .col {
+    margin-bottom: 20px !important;
+  }
+}
+

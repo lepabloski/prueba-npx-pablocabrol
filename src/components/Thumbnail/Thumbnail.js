@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Thumbnail(foto, placeholder) {
+function Thumbnail(foto) {
     return (
-        <img className="card-img-top"src={foto.image} />
+        <img className="bd-placeholder-img card-img-top" width="100%" height="225" src={foto.image} />
     )
 }
 

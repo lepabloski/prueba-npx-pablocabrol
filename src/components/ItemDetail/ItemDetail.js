@@ -1,3 +1,5 @@
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
@@ -5,14 +7,20 @@ import ItemCount from '../ItemCount/ItemCount'
 
 const FinishingBuy = () => {
   return <>
-    <div className="d-grid gap-2">
-      <Link className="btn btn-primary" to='/cart'>Terminar compra</Link>
-      <Link className="btn btn-primary" to='/'>Continuar comprando</Link>
+    <div className="d-grid gap-1">
+      <div className="row">
+        <div className="col-md-2 col-md-6">
+          <Link className="btn btn-success" to='/cart'>Terminar compra <FontAwesomeIcon className="ShoppingCar" icon={faShoppingCart} /></Link>
+        </div>
+        <div className="col-md-2 col-md-6">
+          <Link className="btn btn-secondary" to='/'>Seguir comprando</Link>
+        </div>
+      </div>
     </div>
   </>
 }
 
-function ItemDetail({ product }) {
+function ItemDetail({ prod }) {
   const [buttonType, setButtonType] = useState('count')
   const { addToCart } = useCartContext()
 
@@ -20,34 +28,32 @@ function ItemDetail({ product }) {
   function onAdd(cant) {
     if (cant > 0) {
       setButtonType('finish')
-      addToCart({ item: product, quantity: cant })
+      addToCart({ item: prod, quantity: cant })
     }
   }
 
   return <div className="container">
-    <div className="card">
-      <div className="container-fliud">
-        <div className="wrapper row">
-          <div className="preview col-md-6">
-
-            <div className="preview-pic tab-content">
-              <div className="tab-pane active" id="pic-1"><img src={product.foto} /></div>
-            </div>
-          </div>
-          <div className="details col-md-6">
-            <h3 className="product-title">{product.name}</h3>
-            <p className="product-description">{product.descripcion}</p>
-            <h3 className="price">Precio: <span>{product.price} Pesos</span></h3>
-            <p className="vote"><strong>{product.stock}</strong> productos en existencia.</p>
-            <div className="action">
-              {
-                buttonType === 'count' ?
-                  <ItemCount stock={product.stock} inicial={1} onAdd={onAdd} />
-                  :
-                  <FinishingBuy />
-              }
-
-            </div>
+    <div className="col-xxl-8 px-4 py-5">
+      <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div className="col-10 col-sm-8 col-lg-6">
+          <img src={prod.foto} className="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy" />
+        </div>
+        <div className="col-lg-6">
+          <h1 className="display-5 fw-bold lh-1 mb-3">{prod.name}</h1>
+          <p className="lead">{prod.descripcion}</p>
+          <h3 className="price">Precio: <span>{prod.price} Pesos</span></h3>
+          <p className={`${prod.stock > 5 ?
+            "text-success"
+            :
+            "text-primary"}`
+          }><strong>{prod.stock}</strong> productos en existencia.</p>
+          <div className="d-grid gap-2 justify-content-md-start">
+            {
+              buttonType === 'count' ?
+                <ItemCount stock={prod.stock} inicial={1} onAdd={onAdd} />
+                :
+                <FinishingBuy />
+            }
           </div>
         </div>
       </div>

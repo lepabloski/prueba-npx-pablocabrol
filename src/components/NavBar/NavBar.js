@@ -5,7 +5,7 @@ import CartWidget from '../CartWidget/CartWidget'
 
 export default function NavBar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
             <Link to='/' className="nav-link">
                 <p className="navbar-brand" href="#">HatShop</p>
             </Link>

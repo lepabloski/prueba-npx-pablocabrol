@@ -8,7 +8,7 @@ function CartWidget() {
     return (
         <>
             <span className="badge rounded-pill">
-                {howMany()}
+                {howMany() ? howMany() : ''}
             </span>
             <FontAwesomeIcon className="ShoppingCar" icon={faShoppingCart} />
 

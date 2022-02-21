@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getDocs, getFirestore, collection, query, where } from 'firebase/firestore'
 import Item from '../Item/Item'
-import Hero from '../Hero/Hero'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function ItemList() {
   const [product, setProduct] = useState([])
@@ -11,6 +10,7 @@ function ItemList() {
 
   useEffect(() => {
     const db = getFirestore()
+    console.log(idCategory)
     const queryCollection = collection(db, 'Items')
 
     let querys = idCategory ? query(queryCollection, where('categoria', '==', idCategory)) : queryCollection
@@ -23,22 +23,50 @@ function ItemList() {
   }, [idCategory])
 
 
-  return (
-    <div>
-      <Hero />
-      <section className="py-5">
-        <div className="container px-4 px-lg-5 mt-5">
-          <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {loading ? <h2>Cargando ...</h2> :
-              product.map(prod =>
-                <div className="col">
-                  <Item {...prod} />
-                </div>
-              )}
+  return (<>
+    {/* <Hero /> */}
+    <nav aria-label="breadcrumb">
+      <ol className="breadcrumb container">
+        {idCategory != undefined ? <li className="breadcrumb-item active" aria-current="page">{idCategory}</li> : <li className="breadcrumb-item active" aria-current="page">Todos</li>}
+      </ol>
+    </nav>
+    <div className="row align-items-md-stretch">
+      <div className="col-md-6">
+        <div className="h-100 p-5 text-white bg-primary rounded-3">
+          <h2>Gorras</h2>
+          <p>Gooras galacticas para esa capochina!</p>
+          <Link to='/category/gorras' className="btn btn-light">Filtrar</Link>
+        </div>
+      </div>
+      <div className="col-md-6">
+        <div className="h-100 p-5 bg-light border rounded-3">
+          <h2>Remeras</h2>
+          <p>Remeras top para semejante personaje!</p>
+          <Link to='/category/remeras' className="btn btn-secondary">Filtrar</Link>
+        </div>
+      </div>
+    </div>
+    <br />
+    {loading ?
+      <div className='row'>
+        <div className="d-flex justify-content-center text-primary">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden"></span>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+      :
+      <>
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {product.map((prod, i) =>
+            <Item {...prod} key={i} />
+          )}
+        </div>
+      </>
+
+    }
+  </>
+
   )
 }
 
