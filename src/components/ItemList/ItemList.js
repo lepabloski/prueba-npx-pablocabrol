@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { getDocs, getFirestore, collection, query, where } from 'firebase/firestore'
 import Item from '../Item/Item'
 import { Link, useParams } from 'react-router-dom'
+
 import Container from 'react-bootstrap/Container'
-import { Breadcrumb, Card, Col, Row } from 'react-bootstrap'
+import Breadcrumb  from 'react-bootstrap/Breadcrumb'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import Row  from 'react-bootstrap/Row'
 
 function ItemList() {
   const [product, setProduct] = useState([])

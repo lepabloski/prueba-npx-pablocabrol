@@ -1,11 +1,15 @@
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import ToastContainer from 'react-bootstrap/ToastContainer';
-import Toast from 'react-bootstrap/Toast';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
 import ItemCount from '../ItemCount/ItemCount'
+
+import ToastContainer from 'react-bootstrap/ToastContainer';
+import Toast from 'react-bootstrap/Toast';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const FinishingBuy = () => {
   return <>
@@ -38,18 +42,18 @@ function ItemDetail({ prod }) {
     }
   }
 
-  return <div className="container">
+  return <Container>
     <ToastContainer className="p-3" position='top-end' >
       <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
         <Toast.Body>Agregaste {countNumber} {prod.name} al carrito! </Toast.Body>
       </Toast>
     </ToastContainer>
-    <div className="col-xxl-8 px-4 py-5">
-      <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div className="col-10 col-sm-8 col-lg-6">
+    <Col className="col-xxl-8 px-4 py-5">
+      <Row className="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <Col className="col-10 col-sm-8 col-lg-6">
           <img src={prod.foto} className="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy" />
-        </div>
-        <div className="col-lg-6">
+        </Col>
+        <Col className="col-lg-6">
           <h1 className="display-5 fw-bold lh-1 mb-3">{prod.name}</h1>
           <p className="lead">{prod.descripcion}</p>
           <h3 className="price">Precio: <span>{prod.price} Pesos</span></h3>
@@ -66,10 +70,10 @@ function ItemDetail({ prod }) {
                 <FinishingBuy />
             }
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </Col>
+      </Row>
+    </Col>
+  </Container>
 }
 
 export default ItemDetail;
