@@ -6,6 +6,8 @@ import Messages from "../Messages/Messages";
 import { generatePath, useNavigate } from 'react-router';
 import { useState } from "react";
 
+import { Col, Container, ListGroup, ListGroupItem, Row, Form } from "react-bootstrap";
+
 function CartList() {
     const { cartList, totalPrice, empty, emptyCart, howMany } = useCartContext()
     const [formData, setFormData] = useState({
@@ -92,10 +94,79 @@ function CartList() {
     }
 
     return (
-        <div className="container">
+        <Container>
             <br />
             {!empty ? <>
-                <div className="row g-5">
+                <Row className="g-5">
+                    <Col sm={5} className="order-md-last">
+                        <h4 className="d-flex justify-content-between align-items-center mb-3">
+                            <span className="text-primary">Tu Carrito</span>
+                            <span className="badge bg-primary rounded-pill text-light ">{howMany()}</span>
+                        </h4>
+                        <ListGroup>
+                            {cartList.map((prod, i) =>
+                                <Cart {...prod} key={i} />
+                            )}
+                            <ListGroup.Item>
+                                <span>Total</span>
+                                <strong>{totalPrice()} $</strong>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Col>
+                    <Col sm={7}>
+                        <h4 className="mb-3">Datos Personales</h4>
+                        <Form className="card p-2" onSubmit={buy}>
+                            <Row className="g-3">
+                                <Col md={12}>
+                                    <Form.Group className="mb-3" controlId="name">
+                                        <Form.Label>Nombre</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Ingrese el nombre"
+                                            onChange={handleChange}
+                                            value={formData.name}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={12}>
+                                    <Form.Group className="mb-3" controlId="phone">
+                                        <Form.Label>Teléfono</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            placeholder="Ingrese el teléfono"
+                                            onChange={handleChange}
+                                            value={formData.phone}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={6}>
+                                    <Form.Group className="mb-3" controlId="email">
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            placeholder="Ingrese el Email"
+                                            onChange={handleChange}
+                                            value={formData.email}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={6}>
+                                    <Form.Group className="mb-3" controlId="validarEmail">
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            placeholder='Repetir Email'
+                                            onChange={handleChange}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <br />
+                            <button className="btn btn-primary" onClick={buy}>Crear Orden</button>
+                        </Form>
+                    </Col>
+                </Row>
+                {/* <div className="row g-5">
                     <div className="col-md-5 col-lg-4 order-md-last">
                         <h4 className="d-flex justify-content-between align-items-center mb-3">
                             <span className="text-primary">Tu Carrito</span>
@@ -163,7 +234,7 @@ function CartList() {
                             <button className="btn btn-primary" onClick={buy}>Crear Orden</button>
                         </form>
                     </div>
-                </div>
+                </div> */}
 
             </>
                 :
@@ -177,7 +248,7 @@ function CartList() {
             {
 
             }
-        </div>
+        </Container>
     )
 }
 

@@ -14,14 +14,14 @@ import Row from 'react-bootstrap/Row';
 const FinishingBuy = () => {
   return <>
     <div className="d-grid gap-1">
-      <div className="row">
-        <div className="col-md-2 col-md-6">
+      <Row>
+        <Col md={2} md={6}>
           <Link className="btn btn-success" to='/cart'>Terminar compra <FontAwesomeIcon className="ShoppingCar" icon={faShoppingCart} /></Link>
-        </div>
-        <div className="col-md-2 col-md-6">
+        </Col>
+        <Col md={2} md={6}>
           <Link className="btn btn-secondary" to='/'>Seguir comprando</Link>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </div>
   </>
 }
