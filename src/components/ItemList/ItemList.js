@@ -32,7 +32,7 @@ function ItemList() {
     <Container>
       <br />
       <Breadcrumb>
-        <Breadcrumb.Item >{idCategory != undefined ? <li className="breadcrumb-item active" aria-current="page">{idCategory}</li> : <li className="breadcrumb-item active" aria-current="page">Todos</li>}</Breadcrumb.Item>
+        {idCategory != undefined ? <Breadcrumb.Item  className="breadcrumb-item active" aria-current="page">{idCategory}</Breadcrumb.Item> : <Breadcrumb.Item className="breadcrumb-item active" aria-current="page">Todos</Breadcrumb.Item>}
       </Breadcrumb>
       <Row>
         <Col sm={6}>
@@ -73,14 +73,11 @@ function ItemList() {
         </Row>
         :
         <>
-          {/* <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> */}
           <Row className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {product.map((prod, i) =>
               <Item {...prod} key={i} />
             )}
           </Row>
-
-          {/* </div> */}
         </>
 
       }

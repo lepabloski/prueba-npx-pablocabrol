@@ -55,15 +55,15 @@ function Order() {
             <h1 className="display-5 fw-bold">Resume de Tu compra</h1>
             <div className="col-lg-8 mx-auto">
               <p className="lead mb-4">Hiciste una compra con el identificador: <b>{currentOrder().id}</b></p>
-              <div class="container">
-                <div class="row">
-                  <div class="col">
+              <div className="container">
+                <div className="row">
+                  <div className="col">
                     <b>Nombre: <p>{currentOrder().buyer.name}</p></b>
                   </div>
-                  <div class="col">
+                  <div className="col">
                     <b>Teléfono: <p>{currentOrder().buyer.phone}</p></b>
                   </div>
-                  <div class="col">
+                  <div className="col">
                     <b>Email: <p>{currentOrder().buyer.email}</p></b>
                   </div>
                 </div>
@@ -89,10 +89,10 @@ function Order() {
                     )}
                 </tbody>
               </table>
-              <div class="container">
-                <div class="row">
-                  <div class="col-4">Total: </div>
-                  <div class="col-8"><b>$ {currentOrder().total}</b></div>
+              <div className="container">
+                <div className="row">
+                  <div className="col-4">Total: </div>
+                  <div className="col-8"><b>$ {currentOrder().total}</b></div>
                 </div>
               </div>
 

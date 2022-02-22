@@ -6,22 +6,24 @@ import Messages from "../Messages/Messages";
 import { generatePath, useNavigate } from 'react-router';
 import { useState } from "react";
 
-import { Col, Container, ListGroup, ListGroupItem, Row, Form } from "react-bootstrap";
+import { Col, Container, ListGroup, ListGroupItem, Row, Form, Button } from "react-bootstrap";
 
 function CartList() {
     const { cartList, totalPrice, empty, emptyCart, howMany } = useCartContext()
+    const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
         phone: '',
         name: ''
     })
+
+
     // Defino una forma de navegar a una url definida
     const navigate = useNavigate();
 
     // Creo una funcion de compra
     const buy = async (e) => {
         e.preventDefault()
-
         let order = {}
 
         order.buyer = formData
@@ -81,12 +83,20 @@ function CartList() {
     }
 
     const handleChange = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
         setFormData({
             ...formData,
-            [event.target.name]: event.target.value
+            [event.target.value]: event.target.value
         })
-    }
 
+    }
+    console.log(formData)
 
     const showOrderId = (id) => {
         navigate(generatePath('/order/:idOrder', { idOrder: id }));
@@ -107,62 +117,86 @@ function CartList() {
                             {cartList.map((prod, i) =>
                                 <Cart {...prod} key={i} />
                             )}
-                            <ListGroup.Item>
+                        </ListGroup>
+                        <ListGroup>
+                            <ListGroup.Item className="d-flex justify-content-between align-items-center mb-3">
                                 <span>Total</span>
                                 <strong>{totalPrice()} $</strong>
                             </ListGroup.Item>
                         </ListGroup>
+
                     </Col>
                     <Col sm={7}>
                         <h4 className="mb-3">Datos Personales</h4>
-                        <Form className="card p-2" onSubmit={buy}>
+                        <Form noValidate validated={validated} className="card p-2" onSubmit={buy}>
                             <Row className="g-3">
                                 <Col md={12}>
                                     <Form.Group className="mb-3" controlId="name">
                                         <Form.Label>Nombre</Form.Label>
                                         <Form.Control
+                                            required
                                             type="text"
                                             placeholder="Ingrese el nombre"
+                                            defaultValue={formData.name}
                                             onChange={handleChange}
-                                            value={formData.name}
                                         />
+                                        <Form.Control.Feedback>Todo Ok</Form.Control.Feedback>
+                                        <Form.Control.Feedback type="invalid">
+                                            Ingrese un nombre
+                                        </Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                                 <Col md={12}>
                                     <Form.Group className="mb-3" controlId="phone">
                                         <Form.Label>Teléfono</Form.Label>
                                         <Form.Control
+                                            required
                                             type="number"
                                             placeholder="Ingrese el teléfono"
+                                            defaultValue={formData.phone}
                                             onChange={handleChange}
-                                            value={formData.phone}
                                         />
+                                        <Form.Control.Feedback>Todo Ok</Form.Control.Feedback>
+                                        <Form.Control.Feedback type="invalid">
+                                            Ingrese un Teléfono
+                                        </Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group className="mb-3" controlId="email">
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control
+                                            required
                                             type="email"
                                             placeholder="Ingrese el Email"
+                                            defaultValue={formData.email}
                                             onChange={handleChange}
-                                            value={formData.email}
                                         />
+                                        <Form.Control.Feedback>Todo Ok</Form.Control.Feedback>
+                                        <Form.Control.Feedback type="invalid">
+                                            Ingrese un email
+                                        </Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group className="mb-3" controlId="validarEmail">
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control
+                                            required
                                             type="email"
                                             placeholder='Repetir Email'
                                             onChange={handleChange}
                                         />
+                                        <Form.Control.Feedback>Todo Ok</Form.Control.Feedback>
+                                        <Form.Control.Feedback type="invalid">
+                                            Re Ingrese un email
+                                        </Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                             </Row>
                             <br />
-                            <button className="btn btn-primary" onClick={buy}>Crear Orden</button>
+                            <Button type="submit">Crear Orden</Button>
+                            {/* <button className="btn btn-primary" onClick={buy}>Crear Orden</button> */}
                         </Form>
                     </Col>
                 </Row>
