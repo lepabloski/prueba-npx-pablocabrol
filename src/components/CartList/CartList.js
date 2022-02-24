@@ -6,13 +6,14 @@ import Messages from "../Messages/Messages";
 import { generatePath, useNavigate } from 'react-router';
 import { useState } from "react";
 
-import { Col, Container, ListGroup, ListGroupItem, Row, Form, Button } from "react-bootstrap";
+import { Col, Container, ListGroup, Row, Form, Button } from "react-bootstrap";
 
 function CartList() {
     const { cartList, totalPrice, empty, emptyCart, howMany } = useCartContext()
     const [validated, setValidated] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
+        validarEmail: '',
         phone: '',
         name: ''
     })
@@ -73,6 +74,7 @@ function CartList() {
             .finally(() => {
                 setFormData({
                     email: '',
+                    validarEmail: '',
                     phone: '',
                     name: ''
                 })
@@ -90,13 +92,13 @@ function CartList() {
         }
 
         setValidated(true);
-        setFormData({
+        setFormData({ 
             ...formData,
-            [event.target.value]: event.target.value
+            [form.name]: form.value
         })
 
+
     }
-    console.log(formData)
 
     const showOrderId = (id) => {
         navigate(generatePath('/order/:idOrder', { idOrder: id }));
@@ -137,8 +139,9 @@ function CartList() {
                                             required
                                             type="text"
                                             placeholder="Ingrese el nombre"
-                                            defaultValue={formData.name}
                                             onChange={handleChange}
+                                            defaultValue={formData.name}
+                                            name='name'
                                         />
                                         <Form.Control.Feedback>Todo Ok</Form.Control.Feedback>
                                         <Form.Control.Feedback type="invalid">
@@ -152,9 +155,10 @@ function CartList() {
                                         <Form.Control
                                             required
                                             type="number"
+                                            name='phone'
                                             placeholder="Ingrese el teléfono"
-                                            defaultValue={formData.phone}
                                             onChange={handleChange}
+                                            defaultValue={formData.phone}
                                         />
                                         <Form.Control.Feedback>Todo Ok</Form.Control.Feedback>
                                         <Form.Control.Feedback type="invalid">
@@ -168,9 +172,10 @@ function CartList() {
                                         <Form.Control
                                             required
                                             type="email"
+                                            name='email'
                                             placeholder="Ingrese el Email"
-                                            defaultValue={formData.email}
                                             onChange={handleChange}
+                                            defaultValue={formData.email}
                                         />
                                         <Form.Control.Feedback>Todo Ok</Form.Control.Feedback>
                                         <Form.Control.Feedback type="invalid">
@@ -184,8 +189,10 @@ function CartList() {
                                         <Form.Control
                                             required
                                             type="email"
+                                            name='validarEmail'
                                             placeholder='Repetir Email'
                                             onChange={handleChange}
+                                            defaultValue={formData.validarEmail}
                                         />
                                         <Form.Control.Feedback>Todo Ok</Form.Control.Feedback>
                                         <Form.Control.Feedback type="invalid">

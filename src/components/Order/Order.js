@@ -7,7 +7,7 @@ function Order() {
   const [loading, setloading] = useState(true)
   const [order, setOrder] = useState({})
 
-  useEffect(() => {
+  useEffect( () => {
     let isMounted = true;
     // funcion que toma el IdOrder pasado por parametro y obtiene la orden correspondiente
     const getOrder = () => {
@@ -38,7 +38,8 @@ function Order() {
     return order
   }
 
-  currentOrder()
+  const theOrder = currentOrder()
+ console.log(theOrder)
   return (
     <>
       {loading ?
@@ -58,13 +59,13 @@ function Order() {
               <div className="container">
                 <div className="row">
                   <div className="col">
-                    <b>Nombre: <p>{currentOrder().buyer.name}</p></b>
+                    <b>Nombre: <p>{theOrder.buyer.name}</p></b>
                   </div>
                   <div className="col">
-                    <b>Teléfono: <p>{currentOrder().buyer.phone}</p></b>
+                    <b>Teléfono: <p>{theOrder.buyer.phone}</p></b>
                   </div>
                   <div className="col">
-                    <b>Email: <p>{currentOrder().buyer.email}</p></b>
+                    <b>Email: <p>{theOrder.buyer.email}</p></b>
                   </div>
                 </div>
               </div>
@@ -78,7 +79,7 @@ function Order() {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentOrder().item
+                  {theOrder.item
                     .map((r, key) =>
                       <tr key={key}>
                         <th scope="row">{r.id}</th>
