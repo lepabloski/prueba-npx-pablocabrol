@@ -92,7 +92,7 @@ function CartList() {
         }
 
         setValidated(true);
-        setFormData({ 
+        setFormData({
             ...formData,
             [form.name]: form.value
         })
@@ -203,79 +203,9 @@ function CartList() {
                             </Row>
                             <br />
                             <Button type="submit">Crear Orden</Button>
-                            {/* <button className="btn btn-primary" onClick={buy}>Crear Orden</button> */}
                         </Form>
                     </Col>
                 </Row>
-                {/* <div className="row g-5">
-                    <div className="col-md-5 col-lg-4 order-md-last">
-                        <h4 className="d-flex justify-content-between align-items-center mb-3">
-                            <span className="text-primary">Tu Carrito</span>
-                            <span className="badge bg-primary rounded-pill text-light ">{howMany()}</span>
-                        </h4>
-                        <ul className="list-group mb-3">
-                            {cartList.map((prod, i) =>
-                                <Cart {...prod} key={i} />
-                            )}
-                            <li className="list-group-item d-flex justify-content-between">
-                                <span>Total</span>
-                                <strong>{totalPrice()} $</strong>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col-md-7 col-lg-8">
-                        <h4 className="mb-3">Datos Personales</h4>
-                        <form className="card p-2" onSubmit={buy}>
-                            <div className="row g-3">
-                                <div className="col-12">
-                                    <label for="name" className="form-label">Nombre</label>
-                                    <input
-                                        className="form-control"
-                                        type='text'
-                                        name='name'
-                                        placeholder='name'
-                                        onChange={handleChange}
-                                        value={formData.name}
-                                    />
-                                </div>
-                                <div className="col-12">
-                                    <label for="phone" className="form-label">Teléfono</label>
-                                    <input
-                                        className="form-control"
-                                        type='number'
-                                        name='phone'
-                                        placeholder='tel'
-                                        onChange={handleChange}
-                                        value={formData.phone}
-                                    />
-                                </div>
-                                <div className="col-sm-6">
-                                    <label for="email" className="form-label">Email</label>
-                                    <input
-                                        className="form-control"
-                                        type='email'
-                                        name='email'
-                                        placeholder='email'
-                                        onChange={handleChange}
-                                        value={formData.email}
-                                    />
-                                </div>
-                                <div className="col-sm-6">
-                                    <label for="validarEmail" className="form-label">Reingrese email</label>
-                                    <input
-                                        className="form-control"
-                                        type='email'
-                                        name='validarEmail'
-                                        placeholder='Repetir Email'
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-                            <br />
-                            <button className="btn btn-primary" onClick={buy}>Crear Orden</button>
-                        </form>
-                    </div>
-                </div> */}
 
             </>
                 :
